@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarModule } from './navbar/navbar.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { NavbarModule } from './navbar/navbar.module';
     AppRoutingModule,
     NgbModule,
 
+    AuthModule,
     NavbarModule
   ],
   providers: [],
