@@ -6,7 +6,6 @@ import { Title } from '@angular/platform-browser';
   template:  `
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
-    <h1>AppComponent olá mundo</h1>
   `
 })
 export class AppComponent {

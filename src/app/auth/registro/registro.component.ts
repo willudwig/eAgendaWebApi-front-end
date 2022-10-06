@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { RegistrarUsuarioViewModel } from '../viewmodels/registrarusuario.view-model';
+import { TokenViewModel } from '../viewmodels/token.view-model';
+
 
 @Component({
   selector: 'app-registro',
@@ -7,10 +14,65 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class RegistroComponent implements OnInit {
+  public form: FormGroup;
 
-  constructor() { }
+  private registroVM: RegistrarUsuarioViewModel;
 
-  ngOnInit(): void {
+  constructor(
+    titulo: Title,
+    private fb: FormBuilder,
+    private authService: AuthService,
+   // private localStorageService: LocalStorageService,
+   // private usuarioService: UsuarioService,
+    private router: Router
+  ) {
+    titulo.setTitle('Registro - e-Agenda');
   }
 
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      nome: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]],
+      confirmarSenha: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  get nome() {
+    return this.form.get('nome');
+  }
+
+  get email() {
+    return this.form.get('email');
+  }
+
+  get senha() {
+    return this.form.get('senha');
+  }
+
+  get confirmarSenha() {
+    return this.form.get('confirmarSenha');
+  }
+
+  public registrar() {
+    if (this.form.invalid) return;
+
+    this.registroVM = Object.assign({}, this.registroVM, this.form.value);
+
+    this.authService.registrarUsuario(this.registroVM)
+      .subscribe({
+        next: (registroRealizado) => this.processarSucesso(registroRealizado),
+        error: (erro) => this.processarFalha(erro)
+      });
+  }
+
+  private processarSucesso(registroRealizado: TokenViewModel) {
+    //this.localStorageService.salvarDadosLocaisUsuario(registroRealizado);
+    //this.usuarioService.logarUsuario(registroRealizado.usuarioToken);
+    //this.router.navigate(['/dashboard']);
+  }
+
+  private processarFalha(erro: any) {
+    console.log(erro);
+  }
 }

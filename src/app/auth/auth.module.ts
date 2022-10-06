@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegistroComponent } from './registro/registro.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +10,8 @@ import { RegistroComponent } from './registro/registro.component';
     RegistroComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }
