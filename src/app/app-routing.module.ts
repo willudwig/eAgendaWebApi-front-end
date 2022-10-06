@@ -11,6 +11,11 @@ const routes: Routes = [
   {
     path: 'conta/registrar',
     component: RegistroComponent
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module')
+      .then(m => m.DashboardModule)
   }
 ];
 

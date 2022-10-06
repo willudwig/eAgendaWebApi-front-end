@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { LocalStorageService } from '../services/local-storage.service';
 import { RegistrarUsuarioViewModel } from '../viewmodels/registrarusuario.view-model';
 import { TokenViewModel } from '../viewmodels/token.view-model';
 
@@ -22,8 +23,8 @@ export class RegistroComponent implements OnInit {
     titulo: Title,
     private fb: FormBuilder,
     private authService: AuthService,
-   // private localStorageService: LocalStorageService,
-   // private usuarioService: UsuarioService,
+    private localStorageService: LocalStorageService,
+    //private usuarioService: UsuarioService,
     private router: Router
   ) {
     titulo.setTitle('Registro - e-Agenda');
@@ -67,9 +68,9 @@ export class RegistroComponent implements OnInit {
   }
 
   private processarSucesso(registroRealizado: TokenViewModel) {
-    //this.localStorageService.salvarDadosLocaisUsuario(registroRealizado);
+    this.localStorageService.salvarDadosLocaisUsuario(registroRealizado);
     //this.usuarioService.logarUsuario(registroRealizado.usuarioToken);
-    //this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard']);
   }
 
   private processarFalha(erro: any) {
