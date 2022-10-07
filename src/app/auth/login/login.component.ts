@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.loginVM = Object.assign({}, this.loginVM, this.form.value);
 
     this.authService.login(this.loginVM).subscribe({
+
       // método caso o login seja realizado com sucesso
       next: (loginRealizado) => this.processarSucesso(loginRealizado),
 
