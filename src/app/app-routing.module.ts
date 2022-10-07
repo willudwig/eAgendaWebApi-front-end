@@ -5,7 +5,7 @@ import { RegistroComponent } from './auth/registro/registro.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo:"conta/registrar",
+    redirectTo:'conta/registrar',
     pathMatch: 'full'
   },
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module')
-      .then(m => m.DashboardModule)
+    .then(m => m.DashboardModule)
   }
 ];
 
