@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './services/auth.guard';
+import { LoginGuard } from './services/login.guard';
 
 
 
@@ -19,6 +21,9 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     AuthService,
-    LocalStorageService]
+    LocalStorageService,
+    AuthGuard,
+    LoginGuard
+  ]
 })
 export class AuthModule { }
