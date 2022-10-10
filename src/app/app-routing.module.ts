@@ -27,6 +27,13 @@ const routes: Routes = [
     .then(m => m.DashboardModule),
 
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'tarefas',
+    loadChildren: () => import('./tarefas/tarefa.module')
+    .then(m => m.TarefaModule),
+
+    //canActivate: [AuthGuard] criado dentro do tarefa-routing.module
   }
 ];
 
