@@ -76,7 +76,6 @@ export class TarefaService {
     }
   }
 
-
   private processarDados(resposta: any) {
     if (resposta?.sucesso)
       return resposta.dados;
