@@ -6,17 +6,13 @@ import { AutenticarUsuarioViewModel } from "../viewmodels/autenticarusuario.view
 import { RegistrarUsuarioViewModel } from "../viewmodels/registrarusuario.view-model";
 import { TokenViewModel } from "../viewmodels/token.view-model";
 
-
 @Injectable()
 export class AuthService {
-
   private apiUrl: string = environment.apiUrl;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
 
-  }
-
-  public registrarUsuario(registro: RegistrarUsuarioViewModel): Observable<TokenViewModel>{//Observable<TokenViewModel> {
+  public registrarUsuario(registro: RegistrarUsuarioViewModel): Observable<TokenViewModel> {
     const resposta = this.http
       .post(this.apiUrl + 'conta/registrar', registro, this.obterHeaderJson())
       .pipe(map(this.processarDados), catchError(this.processarFalha));
@@ -32,6 +28,12 @@ export class AuthService {
     return resposta;
   }
 
+  public logout() {
+    const resposta = this.http
+      .post(this.apiUrl + 'conta/sair', this.obterHeaderJson());
+
+    return resposta;
+  }
 
   private processarDados(resposta: any) {
     if (resposta.sucesso)

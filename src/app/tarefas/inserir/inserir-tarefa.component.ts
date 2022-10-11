@@ -7,6 +7,8 @@ import { FormsTarefaViewModel, ItemTarefaViewModel } from '../view-models/forms-
 import { PrioridadeTarefaEnum } from '../view-models/prioridade-tarefa.enum';
 import { StatusItemTarefa } from '../view-models/status-item-tarefa.enum';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-inserir-tarefa',
   templateUrl: './inserir-tarefa.component.html'
@@ -24,7 +26,8 @@ export class InserirTarefaComponent implements OnInit {
     titulo: Title,
     private formBuilder: FormBuilder,
     private tarefaService: TarefaService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     titulo.setTitle('Cadastrar Tarefa - e-Agenda');
   }
@@ -73,23 +76,27 @@ export class InserirTarefaComponent implements OnInit {
   }
 
   public gravar() {
-    if (this.formTarefa.invalid) return;
 
-    this.tarefaFormVM = Object.assign({}, this.tarefaFormVM, this.formTarefa.value);
+      if (this.formTarefa.invalid) return;
 
-    this.tarefaService.inserir(this.tarefaFormVM)
+      this.tarefaFormVM = Object.assign({}, this.tarefaFormVM, this.formTarefa.value);
+
+      this.tarefaService.inserir(this.tarefaFormVM)
       .subscribe({
         next: (tarefaInserida) => this.processarSucesso(tarefaInserida),
         error: (erro) => this.processarFalha(erro)
-      })
+      });
+
   }
 
   private processarSucesso(tarefa: FormsTarefaViewModel): void {
+    this.toastr.success('Operação bem sucedida!', 'Sucesso');
     this.router.navigate(['/tarefas/listar']);
   }
 
   private processarFalha(erro: any) {
     if (erro) {
+      this.toastr.error('Operação mal sucedida!', 'Fracasso');
       console.error(erro);
     }
   }

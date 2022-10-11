@@ -9,6 +9,11 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,6 +23,12 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+
+    //toastr
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    //
 
     CoreModule,
     AuthModule,
