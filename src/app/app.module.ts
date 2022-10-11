@@ -13,10 +13,12 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { ContatoComponent } from './contatos/contato.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContatoComponent
   ],
   imports: [
     BrowserModule,

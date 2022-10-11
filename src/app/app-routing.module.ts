@@ -35,6 +35,13 @@ const routes: Routes = [
 
     //canActivate: [AuthGuard] criado dentro do tarefa-routing.module
   }
+  {
+    path: 'contatos',
+    loadChildren: () => import('./contatos/contato.module')
+    .then(m => m.ContatoModule),
+
+    //canActivate: [AuthGuard] criado dentro do tarefa-routing.module
+  }
 ];
 
 @NgModule({
