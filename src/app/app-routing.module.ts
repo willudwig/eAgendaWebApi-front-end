@@ -34,13 +34,13 @@ const routes: Routes = [
     .then(m => m.TarefaModule),
 
     //canActivate: [AuthGuard] criado dentro do tarefa-routing.module
-  }
+  },
   {
     path: 'contatos',
     loadChildren: () => import('./contatos/contato.module')
     .then(m => m.ContatoModule),
 
-    //canActivate: [AuthGuard] criado dentro do tarefa-routing.module
+    //canActivate: [AuthGuard] criado dentro do contato-routing.module
   }
 ];
 

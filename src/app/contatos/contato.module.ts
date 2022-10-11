@@ -5,7 +5,6 @@ import { ContatoRoutingModule } from './contato-routing.module';
 import { ListarContatoComponent } from './listar/listar-contato.component';
 import { InserirContatoComponent } from './inserir/inserir-contato.component';
 import { EditarContatoComponent } from './editar/editar-contato.component';
-import { EcluirContatoComponent } from './excluir/ecluir-contato.component';
 import { ExcluirContatoComponent } from './excluir/excluir-contato.component';
 
 
@@ -14,7 +13,6 @@ import { ExcluirContatoComponent } from './excluir/excluir-contato.component';
     ListarContatoComponent,
     InserirContatoComponent,
     EditarContatoComponent,
-    EcluirContatoComponent,
     ExcluirContatoComponent
   ],
   imports: [

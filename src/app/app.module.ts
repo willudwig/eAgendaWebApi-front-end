@@ -18,7 +18,6 @@ import { ContatoComponent } from './contatos/contato.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ContatoComponent
   ],
   imports: [
     BrowserModule,

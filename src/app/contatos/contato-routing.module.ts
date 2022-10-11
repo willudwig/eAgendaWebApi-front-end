@@ -7,6 +7,7 @@ import { ExcluirContatoComponent } from './excluir/excluir-contato.component';
 import { InserirContatoComponent } from './inserir/inserir-contato.component';
 import { ListarContatoComponent } from './listar/listar-contato.component';
 import { FormContatoResolver } from './services/form-contato.resolver';
+import { VisualizarContatoResolver } from './services/visualizar-contato.resolver';
 
 const routes: Routes = [
   {
