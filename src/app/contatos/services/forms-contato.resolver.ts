@@ -5,7 +5,7 @@ import { FormsContatoViewModel } from "../view-models/forms-contato.view-model";
 import { ContatoService } from "./contato.service";
 
 @Injectable()
-export class FormContatoResolver implements Resolve<FormsContatoViewModel> {
+export class FormsContatoResolver implements Resolve<FormsContatoViewModel> {
 
   constructor(private contatoService: ContatoService) { }
 

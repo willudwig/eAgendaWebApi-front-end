@@ -6,7 +6,7 @@ import { EditarContatoComponent } from './editar/editar-contato.component';
 import { ExcluirContatoComponent } from './excluir/excluir-contato.component';
 import { InserirContatoComponent } from './inserir/inserir-contato.component';
 import { ListarContatoComponent } from './listar/listar-contato.component';
-import { FormContatoResolver } from './services/form-contato.resolver';
+import { FormsContatoResolver } from './services/forms-contato.resolver';
 import { VisualizarContatoResolver } from './services/visualizar-contato.resolver';
 
 const routes: Routes = [
@@ -31,7 +31,7 @@ const routes: Routes = [
       {
         path: 'editar/:id',
         component: EditarContatoComponent,
-        resolve: { contato: FormContatoResolver }
+        resolve: { contato: FormsContatoResolver }
       },
       {
         path: 'excluir/:id',
