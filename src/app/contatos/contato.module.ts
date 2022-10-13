@@ -12,6 +12,7 @@ import { ContatoService } from './services/contato.service';
 import { VisualizarTarefaResolver } from '../tarefas/services/visualizar.tarefa.resolver';
 import { FormsContatoResolver } from './services/forms-contato.resolver';
 import { ContatoComponent } from './contato.component';
+import { VisualizarContatoResolver } from './services/visualizar-contato.resolver';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ContatoComponent } from './contato.component';
   providers: [
     ContatoService,
     FormsContatoResolver,
-    VisualizarTarefaResolver
+    VisualizarTarefaResolver,
+    VisualizarContatoResolver
   ]
 })
 export class ContatoModule { }

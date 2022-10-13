@@ -27,6 +27,8 @@
           <tr>
             <th>Nome</th>
             <th>Telefone</th>
+            <th>Email</th>
+            <th>Empresa</th>
             <th>Cargo</th>
             <th>Ações</th>
           </tr>
@@ -35,6 +37,8 @@
             <tr *ngFor="let t of (contatos$ | async)">
               <td>{{t.nome}}</td>
               <td>{{t.telefone}}</td>
+              <td>{{t.email}}</td>
+              <td>{{t.empresa}}</td>
               <td>{{t.cargo}}</td>
 
               <td class="d-grid d-md-block">

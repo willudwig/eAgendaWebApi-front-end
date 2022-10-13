@@ -75,7 +75,7 @@ export class InserirTarefaComponent implements OnInit {
     })
   }
 
-  public gravar() {
+  public gravar(): void {
 
       if (this.formTarefa.invalid) return;
 

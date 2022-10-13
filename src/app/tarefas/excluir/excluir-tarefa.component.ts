@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TarefaService } from '../services/tarefa.service';
 import { VisualizarTarefaViewModel } from '../view-models/visualizar-tarefa.view-model';
 
@@ -18,7 +19,8 @@ export class ExcluirTarefaComponent implements OnInit {
     titulo: Title,
     private route: ActivatedRoute,
     private router: Router,
-    private tarefaService: TarefaService
+    private tarefaService: TarefaService,
+    private toastr: ToastrService
   ) {
     titulo.setTitle('Excluir Tarefa - e-Agenda');
   }
@@ -37,11 +39,13 @@ export class ExcluirTarefaComponent implements OnInit {
   }
 
   private processarSucesso(tarefaId: string): void {
+    this.toastr.success("Operação bem sucedida", "Sucesso")
     this.router.navigate(['/tarefas/listar']);
   }
 
   private processarFalha(erro: any) {
     if (erro) {
+      this.toastr.error("Operação mal sucedida", "Fracasso")
       console.error(erro);
     }
   }
