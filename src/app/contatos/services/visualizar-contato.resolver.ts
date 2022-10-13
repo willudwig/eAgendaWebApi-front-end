@@ -10,6 +10,6 @@ export class VisualizarContatoResolver implements Resolve<VisualizarContatoViewM
   constructor(private contatoService: ContatoService) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<VisualizarContatoViewModel> {
-    return this.contatoService.selecionarContatoCompletaPorId(route.params['id']);
+    return this.contatoService.selecionarContatoCompletoPorId(route.params['id']);
   }
 }

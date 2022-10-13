@@ -58,7 +58,7 @@ export class ContatoService {
     return throwError(() => new Error(resposta.error.erros[0]));
   }
 
-  public selecionarContatoCompletaPorId(id: string): Observable<VisualizarContatoViewModel> {
+  public selecionarContatoCompletoPorId(id: string): Observable<VisualizarContatoViewModel> {
     const resposta = this.http
       .get<VisualizarContatoViewModel>(this.apiUrl + 'contatos/visualizacao-completa/' + id, this.obterHeadersAutorizacao())
       .pipe(map(this.processarDados), catchError(this.processarFalha));
