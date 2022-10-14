@@ -33,8 +33,9 @@
             <th>Ações</th>
           </tr>
           </thead>
-          <tbody class="text-center">
+          <tbody class="text-center fs-6">
             <tr *ngFor="let t of (contatos$ | async)">
+
               <td>{{t.nome}}</td>
               <td>{{t.telefone}}</td>
               <td>{{t.email}}</td>
@@ -42,6 +43,7 @@
               <td>{{t.cargo}}</td>
 
               <td class="d-grid d-md-block">
+
                 <button [routerLink]="['/contatos/editar', t.id]"
                   type="button" class="btn btn-sm btn-primary me-0 me-md-1 mb-1 mb-md-auto">
                   <i class="bi bi-pencil"></i>
@@ -50,6 +52,7 @@
                   type="button" class="btn btn-sm btn-outline-danger me-0 me-md-1 mb-1 mb-md-auto">
                   <i class="bi bi-trash"></i>
                 </button>
+                
               </td>
 
             </tr>

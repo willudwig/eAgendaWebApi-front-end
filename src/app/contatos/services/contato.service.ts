@@ -76,7 +76,7 @@ export class ContatoService {
 
   public editar(contato: FormsContatoViewModel): Observable<FormsContatoViewModel> {
     const resposta = this.http
-      .put<FormsContatoViewModel>(this.apiUrl + 'contatos/' + contato.id, this.obterHeadersAutorizacao())
+      .put<FormsContatoViewModel>(this.apiUrl + 'contatos/' + contato.id, contato, this.obterHeadersAutorizacao())
       .pipe(map(this.processarDados), catchError(this.processarFalha));
 
     return resposta;

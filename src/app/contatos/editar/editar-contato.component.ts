@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ContatoService } from '../services/contato.service';
 import { FormsContatoViewModel } from '../view-models/forms-contato.view-model';
@@ -22,6 +22,7 @@ export class EditarContatoComponent implements OnInit {
       private formBuilder: FormBuilder,
       private contatoService: ContatoService,
       private toastr: ToastrService,
+      private route: ActivatedRoute,
       private router: Router,
     )
     {
@@ -30,12 +31,23 @@ export class EditarContatoComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.contatoFormVM = this.route.snapshot.data['contato'];
+
     this.formContato = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
       telefone: ['', [Validators.required]],
       email: ['', [Validators.required]],
       empresa: ['', [Validators.required]],
       cargo: ['', [Validators.required]]
+    });
+
+    this.formContato.patchValue({
+      id: this.contatoFormVM.id,
+      nome: this.contatoFormVM.nome,
+      telefone: this.contatoFormVM.telefone,
+      email: this.contatoFormVM.email,
+      empresa: this.contatoFormVM.empresa,
+      cargo: this.contatoFormVM.cargo,
     });
   }
 
@@ -66,10 +78,10 @@ export class EditarContatoComponent implements OnInit {
     this.contatoFormVM = Object.assign({}, this.contatoFormVM, this.formContato.value);
 
     this.contatoService.editar(this.contatoFormVM)
-    .subscribe({
-      next: (contatoEditado) => this.processarSucesso(contatoEditado),
-      error: (erro) => this.processarFalha(erro)
-    });
+      .subscribe({
+        next: (contatoEditado) => this.processarSucesso(contatoEditado),
+        error: (erro) => this.processarFalha(erro)
+      });
 
   }
 

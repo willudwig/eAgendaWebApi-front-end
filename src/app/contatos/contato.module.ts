@@ -9,7 +9,6 @@ import { ExcluirContatoComponent } from './excluir/excluir-contato.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ContatoService } from './services/contato.service';
-import { VisualizarTarefaResolver } from '../tarefas/services/visualizar.tarefa.resolver';
 import { FormsContatoResolver } from './services/forms-contato.resolver';
 import { ContatoComponent } from './contato.component';
 import { VisualizarContatoResolver } from './services/visualizar-contato.resolver';
@@ -32,7 +31,6 @@ import { VisualizarContatoResolver } from './services/visualizar-contato.resolve
   providers: [
     ContatoService,
     FormsContatoResolver,
-    VisualizarTarefaResolver,
     VisualizarContatoResolver
   ]
 })
