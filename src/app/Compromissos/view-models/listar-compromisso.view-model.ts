@@ -1,6 +1,8 @@
 import { TipoLocalizacaoCompromissoEnum } from "./tipo-localizacao-compromisso.enum";
 
 export class ListarCompromissoViewModel {
+
+  id: string;
   assunto:	string;
   local:	string;
   tipoLocal:	TipoLocalizacaoCompromissoEnum;
@@ -9,4 +11,5 @@ export class ListarCompromissoViewModel {
   horaInicio:	string;
   horaTermino:	string;
   contatoId:	string;
+
 }

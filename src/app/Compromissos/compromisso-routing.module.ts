@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/services/auth.guard';
 import { CompromissoComponent } from './compromisso.component';
+import { EditarCompromissoComponent } from './editar/editar-compromisso.component';
+import { ExcluirCompromissoComponent } from './excluir/excluir-compromisso.component';
+import { InserirCompromissoComponent } from './inserir/inserir-compromisso.component';
+import { ListarCompromissoComponent } from './listar/listar-compromisso.component';
 import { FormsCompromissoResolver } from './services/forms.compromisso.resolver';
 import { VisualizarCompromissoResolver } from './services/visualizar-compromisso.resolver';
 

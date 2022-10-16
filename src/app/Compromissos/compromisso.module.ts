@@ -9,12 +9,18 @@ import { FormsCompromissoResolver } from './services/forms.compromisso.resolver'
 import { VisualizarCompromissoResolver } from './services/visualizar-compromisso.resolver';
 import { CompromissoComponent } from './compromisso.component';
 import { ListarCompromissoComponent } from './listar/listar-compromisso.component';
+import { InserirCompromissoComponent } from './inserir/inserir-compromisso.component';
+import { EditarCompromissoComponent } from './editar/editar-compromisso.component';
+import { ExcluirCompromissoComponent } from './excluir/excluir-compromisso.component';
 
 
 @NgModule({
   declarations: [
     CompromissoComponent,
-    ListarCompromissoComponent
+    ListarCompromissoComponent,
+    InserirCompromissoComponent,
+    EditarCompromissoComponent,
+    ExcluirCompromissoComponent
   ],
   imports: [
     CommonModule,

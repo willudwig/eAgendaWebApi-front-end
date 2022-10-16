@@ -10,6 +10,7 @@ import { ListarCompromissoViewModel } from '../view-models/listar-compromisso.vi
 export class ListarCompromissoComponent implements OnInit {
 
   public compromissos$: Observable<ListarCompromissoViewModel[]>;
+  public contatoNome: string;
 
   constructor(private serviceCompromisso: CompromissoService) { }
 

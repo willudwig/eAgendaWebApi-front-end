@@ -4,7 +4,6 @@ export class FormsCompromissoViewModel {
 
   id: string;
   assunto:	string;
-  nullable: true;
   local:	string;
   tipoLocal:	TipoLocalizacaoCompromissoEnum;
   link:	string;
