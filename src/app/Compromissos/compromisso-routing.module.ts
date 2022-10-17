@@ -31,12 +31,12 @@ const routes: Routes = [
       {
         path: 'editar/:id',
         component: EditarCompromissoComponent,
-        resolve: { Compromisso: FormsCompromissoResolver }
+        resolve: { compromisso: FormsCompromissoResolver }
       },
       {
         path: 'excluir/:id',
         component: ExcluirCompromissoComponent,
-        resolve: { Compromisso: VisualizarCompromissoResolver }
+        resolve: { compromisso: VisualizarCompromissoResolver }
       },
 
     ]

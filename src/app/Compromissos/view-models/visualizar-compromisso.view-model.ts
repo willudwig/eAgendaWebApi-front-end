@@ -2,6 +2,7 @@ import { ListarContatoViewModel } from "src/app/contatos/view-models/listar-cont
 import { TipoLocalizacaoCompromissoEnum } from "./tipo-localizacao-compromisso.enum";
 
 export class VisualizarCompromissoViewModel {
+  id: string;
   assunto:	string;
   local:	string;
   tipoLocal:	TipoLocalizacaoCompromissoEnum;

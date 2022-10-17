@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ContatoService } from 'src/app/contatos/services/contato.service';
 import { CompromissoService } from '../services/compromisso.service';
 import { FormsCompromissoViewModel } from '../view-models/forms-compromisso.view-model';
 import { TipoLocalizacaoCompromissoEnum } from '../view-models/tipo-localizacao-compromisso.enum';
@@ -17,8 +18,12 @@ export class InserirCompromissoComponent implements OnInit {
 
   public formCompromisso: FormGroup;
   public compromissoFormVM: FormsCompromissoViewModel;
+  public contato_nome: string;
+
   public tiposLocal = Object.values(TipoLocalizacaoCompromissoEnum)
     .filter(v => !Number.isFinite(v));
+
+  public contatoNomes: string[];
 
   constructor(
       titulo: Title,
@@ -26,11 +31,15 @@ export class InserirCompromissoComponent implements OnInit {
       private compromissoService: CompromissoService,
       private toastr: ToastrService,
       private router: Router,
+      private contatoService: ContatoService
     )
     {
       titulo.setTitle("Cadastrar Compromisso - eAgenda");
+
       this.compromissoFormVM = new FormsCompromissoViewModel();
+
     }
+
   ngOnInit(): void {
     this.formCompromisso = this.formBuilder.group({
       assunto: ['', [Validators.required, Validators.minLength(3)]],
@@ -38,9 +47,12 @@ export class InserirCompromissoComponent implements OnInit {
       tipoLocal: ['', [Validators.required]],
       data: ['', [Validators.required]],
       horaInicio: ['', [Validators.required]],
-      horaTermino: ['', [Validators.required]],
-      CompromissoId: ['', [Validators.required]]
+      horaTermino: [''],
+      contatoId:[''],
+      contatoNome: ['']
     });
+
+    //this.obterNomesContatos();
   }
 
   get assunto() {
@@ -65,6 +77,10 @@ export class InserirCompromissoComponent implements OnInit {
 
   get horaTermino() {
     return this.formCompromisso.get('horaTermino');
+  }
+
+  get contatoNome() {
+    return this.formCompromisso.get('contatoNome');
   }
 
   public gravar(): void {
@@ -92,5 +108,14 @@ export class InserirCompromissoComponent implements OnInit {
       console.error(erro);
     }
   }
+
+  // private obterNomesContatos(): void  {
+  //   const nomes = this.contatoService.selecionarTodos();
+  //    nomes.forEach((x) => {
+  //      x.forEach( (y) => {
+  //        this.contatoNomes.push(y.nome);
+  //      })
+  //   });
+  // }
 
 }

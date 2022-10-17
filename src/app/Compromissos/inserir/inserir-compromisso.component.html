@@ -83,70 +83,13 @@
       <div class="form-group mb-3 position-relative">
         <label class="form-label">Contato:</label>
         <ng-select
-          [ngClass]="tipoLocal?.touched && tipoLocal?.invalid ? 'is-invalid' : ''"
-          formControlName="tipoLocal" [clearable]="false" [searchable]="false">
-          <ng-option *ngFor="let tipoLocal of tiposLocal ; index as i" [value]="i" >
-              {{tipoLocal}}
+          [ngClass]="contatoNome?.touched && contatoNome?.invalid ? 'is-invalid' : ''"
+          formControlName="contatoNome" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let contatoNome of contatoNomes ; index as i" [value]="i" >
+              {{ contatoNome }}
           </ng-option>
         </ng-select>
-        <div class="invalid-tooltip" *ngIf="tipoLocal?.touched && tipoLocal?.invalid">
-          <span *ngIf="tipoLocal?.errors?.['required']">O tipo de local é obrigatório.</span>
-        </div>
       </div>
-
-
-        <div class="form-group mb-3 position-relative">
-          <label class="form-label">Prioridade:</label>
-          <ng-select
-            [ngClass]="prioridade?.touched && prioridade?.invalid ? 'is-invalid' : ''"
-            formControlName="prioridade" [clearable]="false" [searchable]="false">
-            <ng-option *ngFor="let prioridade of prioridades ; index as i" [value]="i" >
-                {{prioridade}}
-            </ng-option>
-          </ng-select>
-          <div class="invalid-tooltip" *ngIf="prioridade?.touched && prioridade?.invalid">
-            <span *ngIf="prioridade?.errors?.['required']">A prioridade precisa ser preenchida.</span>
-          </div>
-        </div>
-
-        <form [formGroup]="formItens">
-          <div class="form-group mt-3">
-            <label class="form-label">Itens da compromisso:</label>
-            <div class="input-group mb-3">
-              <input formControlName="assuntoItem"
-                type="text" class="form-control" placeholder="Digite o assunto do item que compõe a compromisso" >
-              <div class="input-group-append">
-                <button (click)="adicionarItem()"
-                  class="btn btn-outline-primary rounded-0" type="button" >Adicionar</button>
-              </div>
-            </div>
-          </div>
-        </form>
-
-        <div class="mt-3">
-          <table class="table table-light table-striped table-hover table-borderless" *ngIf="compromissoFormVM.itens.length > 0">
-            <thead class="thead-dark text-center">
-            <tr>
-              <th>assunto do Item</th>
-              <th>Ações</th>
-            </tr>
-            </thead>
-            <tbody class="text-center">
-              <tr *ngFor="let item of compromissoFormVM.itens;">
-                <td>{{item.assunto}}</td>
-
-                <td class="d-grid d-md-block">
-                  <button type="button" class="btn btn-sm btn-outline-danger me-0 me-md-1 mb-1 mb-md-auto" (click)="removerItem(item)">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </td>
-
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-
 
         <div class="card-footer g-grid d-flex gap-1 mt-5">
           <button (click)="gravar()"

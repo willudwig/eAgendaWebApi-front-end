@@ -1,1 +1,110 @@
-<p>editar-compromisso works!</p>
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+      <!-- assunto -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">
+            Inserir Novo Compromisso
+          </h1>
+        <hr />
+      </div>
+
+      <form [formGroup]="formCompromisso" class="mt-4">
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Assunto:</label>
+          <input
+            [ngClass]="assunto?.touched && assunto?.invalid ? 'is-invalid' : ''"
+            formControlName="assunto"
+            class="form-control"
+            type="text"
+            placeholder="Digite o assunto do compromisso"
+          />
+          <div class="invalid-tooltip" *ngIf="assunto?.touched && assunto?.invalid">
+            <span *ngIf="assunto?.errors?.['required']">O assunto precisa ser preenchido.</span>
+            <span *ngIf="assunto?.errors?.['minlength']">O assunto deve ter no mínimo 3 caracteres.</span>
+          </div>
+        </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label">Local:</label>
+        <input
+          [ngClass]="local?.touched && local?.invalid ? 'is-invalid' : ''"
+          formControlName="local"
+          class="form-control"
+          type="text"
+          placeholder="Digite o local do compromisso"
+        />
+        <div class="invalid-tooltip" *ngIf="local?.touched && local?.invalid">
+          <span *ngIf="assunto?.errors?.['required']">O local precisa ser preenchido.</span>
+        </div>
+      </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label">Tipo Local:</label>
+        <ng-select
+          [ngClass]="tipoLocal?.touched && tipoLocal?.invalid ? 'is-invalid' : ''"
+          formControlName="tipoLocal" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let tipoLocal of tiposLocal ; index as i" [value]="i" >
+              {{tipoLocal}}
+          </ng-option>
+        </ng-select>
+        <div class="invalid-tooltip" *ngIf="tipoLocal?.touched && tipoLocal?.invalid">
+          <span *ngIf="tipoLocal?.errors?.['required']">O tipo de local é obrigatório.</span>
+        </div>
+      </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label">Data:</label>
+        <input
+          [ngClass]="data?.touched && data?.invalid ? 'is-invalid' : ''"
+          formControlName="data"
+          class="form-control"
+          type="date"
+        />
+        <div class="invalid-tooltip" *ngIf="data?.touched && data?.invalid">
+          <span *ngIf="data?.errors?.['required']">A data é obrigatória.</span>
+        </div>
+      </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label">Hora Início:</label>
+        <input
+          [ngClass]="horaInicio?.touched && horaInicio?.invalid ? 'is-invalid' : ''"
+          formControlName="horaInicio"
+          class="form-control"
+          type="time"
+        />
+        <div class="invalid-tooltip" *ngIf="horaInicio?.touched && horaInicio?.invalid">
+          <span *ngIf="horaInicio?.errors?.['required']">A hora de início é obrigatória.</span>
+        </div>
+      </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label">Contato:</label>
+        <ng-select
+          [ngClass]="contatoNome?.touched && contatoNome?.invalid ? 'is-invalid' : ''"
+          formControlName="contatoNome" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let contatoNome of contatoNomes ; index as i" [value]="i" >
+              {{ contatoNome }}
+          </ng-option>
+        </ng-select>
+      </div>
+
+        <div class="card-footer g-grid d-flex gap-1 mt-5">
+          <button (click)="gravar()"
+            type="button" class="btn btn-primary px-5">
+            <i class="pi pi-save me-2"></i>
+            Gravar
+          </button>
+          <button routerLink="/compromissos/listar"
+            type="button" class="btn btn-outline-primary px-5">
+            <i class="pi pi-arrow-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

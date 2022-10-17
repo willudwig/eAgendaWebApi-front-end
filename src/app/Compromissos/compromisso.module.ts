@@ -12,6 +12,7 @@ import { ListarCompromissoComponent } from './listar/listar-compromisso.componen
 import { InserirCompromissoComponent } from './inserir/inserir-compromisso.component';
 import { EditarCompromissoComponent } from './editar/editar-compromisso.component';
 import { ExcluirCompromissoComponent } from './excluir/excluir-compromisso.component';
+import { ContatoService } from '../contatos/services/contato.service';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ExcluirCompromissoComponent } from './excluir/excluir-compromisso.compo
   ],
   providers:[
     CompromissoService,
+    ContatoService,
     FormsCompromissoResolver,
     VisualizarCompromissoResolver
   ]
