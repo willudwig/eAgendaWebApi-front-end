@@ -39,13 +39,13 @@ export class EditarCompromissoComponent implements OnInit {
     this.compromissoFormVM = this.route.snapshot.data['compromisso'];
 
     this.formCompromisso = this.formBuilder.group({
-      assunto: ['', [Validators.required, Validators.minLength(3)]],
-      local: ['', [Validators.required]],
-      data: ['', [Validators.required]],
-      horaInicio: ['', [Validators.required]],
-      horaTermino: ['', [Validators.required]],
-      tipoLocal:[''],
-      contatoNome: ['']
+      assunto: [null, [Validators.required, Validators.minLength(3)]],
+      local: [null, [Validators.required]],
+      data: [null, [Validators.required]],
+      horaInicio: [null, [Validators.required]],
+      horaTermino: [null, [Validators.required]],
+      tipoLocal:[null],
+      contatoNome: [null]
     });
 
     this.formCompromisso.patchValue({

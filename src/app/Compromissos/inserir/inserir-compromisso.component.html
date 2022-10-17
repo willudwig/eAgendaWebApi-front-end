@@ -11,6 +11,7 @@
       </div>
 
       <form [formGroup]="formCompromisso" class="mt-4">
+
         <div class="form-group mb-3 position-relative">
           <label class="form-label">Assunto:</label>
           <input
@@ -80,7 +81,7 @@
         </div>
       </div>
 
-      <div class="form-group mb-3 position-relative">
+      <!-- <div class="form-group mb-3 position-relative">
         <label class="form-label">Contato:</label>
         <ng-select
           [ngClass]="contatoNome?.touched && contatoNome?.invalid ? 'is-invalid' : ''"
@@ -89,7 +90,7 @@
               {{ contatoNome }}
           </ng-option>
         </ng-select>
-      </div>
+      </div> -->
 
         <div class="card-footer g-grid d-flex gap-1 mt-5">
           <button (click)="gravar()"
