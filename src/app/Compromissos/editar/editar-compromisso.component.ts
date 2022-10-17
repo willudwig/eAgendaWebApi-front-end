@@ -44,8 +44,7 @@ export class EditarCompromissoComponent implements OnInit {
       data: [null, [Validators.required]],
       horaInicio: [null, [Validators.required]],
       horaTermino: [null, [Validators.required]],
-      tipoLocal:[null],
-      contatoNome: [null]
+      tipoLocal:[null]
     });
 
     this.formCompromisso.patchValue({
@@ -56,7 +55,6 @@ export class EditarCompromissoComponent implements OnInit {
       horaInicio: this.compromissoFormVM.horaInicio,
       horaTermino: this.compromissoFormVM.horaTermino,
       tipoLocal: this.compromissoFormVM.tipoLocal,
-      contatoNome: this.compromissoFormVM.contatoNome
     });
   }
 

@@ -1,3 +1,4 @@
+import { Time } from "@angular/common";
 import { TipoLocalizacaoCompromissoEnum } from "./tipo-localizacao-compromisso.enum"
 
 export class FormsCompromissoViewModel {
@@ -11,6 +12,4 @@ export class FormsCompromissoViewModel {
   horaInicio:	string;
   horaTermino:	string;
   contatoId:	string;
-  contatoNome: string
-
 }

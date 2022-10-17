@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { ContatoService } from 'src/app/contatos/services/contato.service';
+import { ListarContatoViewModel } from 'src/app/contatos/view-models/listar-contato.view-model';
 import { CompromissoService } from '../services/compromisso.service';
 import { FormsCompromissoViewModel } from '../view-models/forms-compromisso.view-model';
 import { TipoLocalizacaoCompromissoEnum } from '../view-models/tipo-localizacao-compromisso.enum';
@@ -18,12 +20,13 @@ export class InserirCompromissoComponent implements OnInit {
 
   public formCompromisso: FormGroup;
   public compromissoFormVM: FormsCompromissoViewModel;
-  public contato_nome: string;
+  public contato_nome: ListarContatoViewModel = new ListarContatoViewModel();
 
   public tiposLocal = Object.values(TipoLocalizacaoCompromissoEnum)
     .filter(v => !Number.isFinite(v));
 
-  public contatoNomes: string[];
+  public contatoNomes: ListarContatoViewModel[];
+  public contatos: Observable<ListarContatoViewModel[]>;
 
   constructor(
       titulo: Title,
@@ -46,13 +49,12 @@ export class InserirCompromissoComponent implements OnInit {
       local: ['', [Validators.required]],
       tipoLocal: ['', [Validators.required]],
       data: ['', [Validators.required]],
-      //horaInicio: ['', [Validators.required]],
+      horaInicio: ['', [Validators.required]],
       //horaTermino: [''],
-      //contatoId:[''],
-      //contatoNome: ['']
+      contatoId:['']
     });
 
-    //this.obterNomesContatos();
+    this.obterNomesContatos();
   }
 
   get assunto() {
@@ -79,9 +81,6 @@ export class InserirCompromissoComponent implements OnInit {
     return this.formCompromisso.get('horaTermino');
   }
 
-  get contatoNome() {
-    return this.formCompromisso.get('contatoNome');
-  }
 
   public gravar(): void {
 
@@ -109,13 +108,11 @@ export class InserirCompromissoComponent implements OnInit {
     }
   }
 
-  // private obterNomesContatos(): void  {
-  //   const nomes = this.contatoService.selecionarTodos();
-  //    nomes.forEach((x) => {
-  //      x.forEach( (y) => {
-  //        this.contatoNomes.push(y.nome);
-  //      })
-  //   });
-  // }
+  private obterNomesContatos(): void  {
+    this.contatos = this.contatoService.selecionarTodos();
+    this.contatos.forEach((x) => {
+      this.contatoNomes = x;
+    });
+  };
 
 }

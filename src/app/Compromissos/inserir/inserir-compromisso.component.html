@@ -81,16 +81,15 @@
         </div>
       </div>
 
-      <!-- <div class="form-group mb-3 position-relative">
+      <div class="form-group mb-3 position-relative">
         <label class="form-label">Contato:</label>
         <ng-select
-          [ngClass]="contatoNome?.touched && contatoNome?.invalid ? 'is-invalid' : ''"
           formControlName="contatoNome" [clearable]="false" [searchable]="false">
-          <ng-option *ngFor="let contatoNome of contatoNomes ; index as i" [value]="i" >
-              {{ contatoNome }}
+          <ng-option *ngFor="let contato_nome of contatoNomes ; index as i" [value]="i" >
+              {{ contato_nome.nome }}
           </ng-option>
         </ng-select>
-      </div> -->
+      </div>
 
         <div class="card-footer g-grid d-flex gap-1 mt-5">
           <button (click)="gravar()"
