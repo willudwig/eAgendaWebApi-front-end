@@ -1,4 +1,4 @@
-import { Time } from "@angular/common";
+import { TimeInterval } from "rxjs/internal/operators/timeInterval";
 import { TipoLocalizacaoCompromissoEnum } from "./tipo-localizacao-compromisso.enum"
 
 export class FormsCompromissoViewModel {
@@ -9,7 +9,7 @@ export class FormsCompromissoViewModel {
   tipoLocal:	TipoLocalizacaoCompromissoEnum;
   link:	string;
   data:	string;
-  horaInicio:	string;
+  horaInicio:	 TimeInterval<any>;
   horaTermino:	string;
   contatoId:	string;
 }

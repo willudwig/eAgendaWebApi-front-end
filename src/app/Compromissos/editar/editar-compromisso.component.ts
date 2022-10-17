@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { ContatoService } from 'src/app/contatos/services/contato.service';
+import { ListarContatoViewModel } from 'src/app/contatos/view-models/listar-contato.view-model';
 import { CompromissoService } from '../services/compromisso.service';
 import { FormsCompromissoViewModel } from '../view-models/forms-compromisso.view-model';
 import { TipoLocalizacaoCompromissoEnum } from '../view-models/tipo-localizacao-compromisso.enum';
@@ -17,10 +20,13 @@ export class EditarCompromissoComponent implements OnInit {
 
   public formCompromisso: FormGroup;
   public compromissoFormVM: FormsCompromissoViewModel;
-  public contatoNomes: string[];
 
   public tiposLocal = Object.values(TipoLocalizacaoCompromissoEnum)
         .filter((x) => !Number.isFinite(x));
+
+  public contato_nome: ListarContatoViewModel = new ListarContatoViewModel();
+  public contatoNomes: ListarContatoViewModel[];
+  public contatos: Observable<ListarContatoViewModel[]>;
 
   constructor(
       titulo: Title,
@@ -29,6 +35,7 @@ export class EditarCompromissoComponent implements OnInit {
       private toastr: ToastrService,
       private route: ActivatedRoute,
       private router: Router,
+      private contatoService: ContatoService
     )
     {
       titulo.setTitle("Cadastrar compromisso - eAgenda");
@@ -56,6 +63,8 @@ export class EditarCompromissoComponent implements OnInit {
       horaTermino: this.compromissoFormVM.horaTermino,
       tipoLocal: this.compromissoFormVM.tipoLocal,
     });
+
+    this.obterNomesContatos();
   }
 
   get assunto() {
@@ -80,10 +89,6 @@ export class EditarCompromissoComponent implements OnInit {
 
   get tipoLocal() {
     return this.formCompromisso.get('tipoLocal');
-  }
-
-  get contatoNome() {
-    return this.formCompromisso.get('contatoNome');
   }
 
   public gravar(): void {
@@ -111,5 +116,12 @@ export class EditarCompromissoComponent implements OnInit {
       console.error(erro);
     }
   }
+
+  private obterNomesContatos(): void  {
+    this.contatos = this.contatoService.selecionarTodos();
+    this.contatos.forEach((x) => {
+      this.contatoNomes = x;
+    });
+  };
 
 }

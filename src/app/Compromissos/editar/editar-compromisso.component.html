@@ -83,10 +83,9 @@
       <div class="form-group mb-3 position-relative">
         <label class="form-label">Contato:</label>
         <ng-select
-          [ngClass]="contatoNome?.touched && contatoNome?.invalid ? 'is-invalid' : ''"
           formControlName="contatoNome" [clearable]="false" [searchable]="false">
           <ng-option *ngFor="let contatoNome of contatoNomes ; index as i" [value]="i" >
-              {{ contatoNome }}
+              {{ contato_nome.nome }}
           </ng-option>
         </ng-select>
       </div>

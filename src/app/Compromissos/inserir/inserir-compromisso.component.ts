@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { find, Observable } from 'rxjs';
 import { ContatoService } from 'src/app/contatos/services/contato.service';
 import { ListarContatoViewModel } from 'src/app/contatos/view-models/listar-contato.view-model';
 import { CompromissoService } from '../services/compromisso.service';
@@ -20,13 +20,14 @@ export class InserirCompromissoComponent implements OnInit {
 
   public formCompromisso: FormGroup;
   public compromissoFormVM: FormsCompromissoViewModel;
-  public contato_nome: ListarContatoViewModel = new ListarContatoViewModel();
 
   public tiposLocal = Object.values(TipoLocalizacaoCompromissoEnum)
-    .filter(v => !Number.isFinite(v));
+  .filter(v => !Number.isFinite(v));
 
+  public contato_nome: ListarContatoViewModel = new ListarContatoViewModel();
   public contatoNomes: ListarContatoViewModel[];
   public contatos: Observable<ListarContatoViewModel[]>;
+  public contato: string;
 
   constructor(
       titulo: Title,
@@ -40,7 +41,6 @@ export class InserirCompromissoComponent implements OnInit {
       titulo.setTitle("Cadastrar Compromisso - eAgenda");
 
       this.compromissoFormVM = new FormsCompromissoViewModel();
-
     }
 
   ngOnInit(): void {
@@ -81,12 +81,15 @@ export class InserirCompromissoComponent implements OnInit {
     return this.formCompromisso.get('horaTermino');
   }
 
-
   public gravar(): void {
 
     if (this.formCompromisso.invalid) return;
 
     this.compromissoFormVM = Object.assign({}, this.compromissoFormVM, this.formCompromisso.value);
+
+    this.compromissoFormVM.contatoId = this.obterIdContato(this.contato_nome.nome);
+
+    document.getElementById('') as HTMLOptionElement
 
     this.compromissoService.inserir(this.compromissoFormVM)
     .subscribe({
@@ -98,7 +101,7 @@ export class InserirCompromissoComponent implements OnInit {
 
   private processarSucesso(compromisso: FormsCompromissoViewModel): void {
     this.toastr.success('Operação bem sucedida!', 'Sucesso');
-    this.router.navigate(['/Compromissos/listar']);
+    this.router.navigate(['/compromissos/listar']);
   }
 
   private processarFalha(erro: any) {
@@ -114,5 +117,18 @@ export class InserirCompromissoComponent implements OnInit {
       this.contatoNomes = x;
     });
   };
+
+  private obterIdContato(nomeContato: string): string {
+    const contatos = this.contatoService.selecionarTodos();
+    contatos.forEach((x) => {
+       x.forEach((y) => {
+          if(y.nome === nomeContato)
+            return y.id;
+          else return "null";
+      })
+    })
+
+    return "null";
+  }
 
 }

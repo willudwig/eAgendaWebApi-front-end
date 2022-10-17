@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CompromissoService } from '../services/compromisso.service';
 import { VisualizarCompromissoViewModel } from '../view-models/visualizar-compromisso.view-model';
-
 @Component({
   selector: 'app-excluir-compromisso',
   templateUrl: './excluir-compromisso.component.html',
