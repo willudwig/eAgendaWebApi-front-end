@@ -25,28 +25,43 @@ export class EditarCompromissoComponent implements OnInit {
   public tiposLocal = Object.values(TipoLocalizacaoCompromissoEnum)
   .filter(v => !Number.isFinite(v));
 
-  public contato_nome: ListarContatoViewModel = new ListarContatoViewModel();
   public contatoNomes: ListarContatoViewModel[];
   public contatos: Observable<ListarContatoViewModel[]>;
+
   constructor(
       titulo: Title,
       private formBuilder: FormBuilder,
       private compromissoService: CompromissoService,
       private toastr: ToastrService,
+      private route: ActivatedRoute,
       private router: Router,
       private contatoService: ContatoService
     )
     {
-      titulo.setTitle("Cadastrar Compromisso - eAgenda");
+      titulo.setTitle("Editar Compromisso - eAgenda");
 
       this.compromissoFormVM = new FormsCompromissoViewModel();
     }
 
   ngOnInit(): void {
+    this.compromissoFormVM = this.route.snapshot.data['compromisso'];
+
     this.formCompromisso = this.formBuilder.group({
       assunto: ['', [Validators.required, Validators.minLength(3)]],
       local: ['', [Validators.required]],
       tipoLocal: ['', [Validators.required]],
+      link:[''],
+      data: ['', [Validators.required]],
+      horaInicio: ['', [Validators.required]],
+      horaTermino: [''],
+      contatoId:[''],
+    });
+
+    this.formCompromisso.patchValue({
+      assunto: ['', [Validators.required, Validators.minLength(3)]],
+      local: ['', [Validators.required]],
+      tipoLocal: ['', [Validators.required]],
+      link:[''],
       data: ['', [Validators.required]],
       horaInicio: ['', [Validators.required]],
       horaTermino: [''],
@@ -96,7 +111,7 @@ export class EditarCompromissoComponent implements OnInit {
 
     this.compromissoService.editar(this.compromissoFormVM)
     .subscribe({
-      next: (CompromissoInserido) => this.processarSucesso(CompromissoInserido),
+      next: (CompromissoEditado) => this.processarSucesso(CompromissoEditado),
       error: (erro) => this.processarFalha(erro)
     });
 

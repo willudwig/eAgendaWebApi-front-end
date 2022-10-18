@@ -5,12 +5,13 @@
       <!-- assunto -->
       <div class="text-md-start">
         <h1 class="fw-bold text-primary">
-            Inserir Novo Compromisso
+            Editar Compromisso
           </h1>
         <hr />
       </div>
 
       <form [formGroup]="formCompromisso" class="mt-4">
+
         <div class="form-group mb-3 position-relative">
           <label class="form-label">Assunto:</label>
           <input
@@ -36,7 +37,7 @@
           placeholder="Digite o local do compromisso"
         />
         <div class="invalid-tooltip" *ngIf="local?.touched && local?.invalid">
-          <span *ngIf="assunto?.errors?.['required']">O local precisa ser preenchido.</span>
+          <span *ngIf="local?.errors?.['required']">O local precisa ser preenchido.</span>
         </div>
       </div>
 
@@ -82,10 +83,10 @@
 
       <div class="form-group mb-3 position-relative">
         <label class="form-label">Contato:</label>
-        <ng-select
-          formControlName="contatoNome" [clearable]="false" [searchable]="false">
-          <ng-option *ngFor="let contatoNome of contatoNomes ; index as i" [value]="i" >
-              {{ contato_nome.nome }}
+        <ng-select id="ngSelect"
+           formControlName="contatoId" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let contato of contatoNomes ; index as i" [value]="contato.id">
+              {{ contato.nome }} | {{contato.id}}
           </ng-option>
         </ng-select>
       </div>

@@ -26,9 +26,9 @@ export class InserirCompromissoComponent implements OnInit {
   public tiposLocal = Object.values(TipoLocalizacaoCompromissoEnum)
   .filter(v => !Number.isFinite(v));
 
-  public contato_nome: ListarContatoViewModel = new ListarContatoViewModel();
   public contatoNomes: ListarContatoViewModel[];
   public contatos: Observable<ListarContatoViewModel[]>;
+
   constructor(
       titulo: Title,
       private formBuilder: FormBuilder,

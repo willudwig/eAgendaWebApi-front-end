@@ -85,8 +85,8 @@
         <label class="form-label">Contato:</label>
         <ng-select id="ngSelect"
            formControlName="contatoId" [clearable]="false" [searchable]="false">
-          <ng-option *ngFor="let contato_nome of contatoNomes ; index as i" [value]="contato_nome.id">
-              {{ contato_nome.nome }} | {{contato_nome.id}}
+          <ng-option *ngFor="let contato of contatoNomes ; index as i" [value]="contato.id">
+              {{ contato.nome }} | {{contato.id}}
           </ng-option>
         </ng-select>
       </div>

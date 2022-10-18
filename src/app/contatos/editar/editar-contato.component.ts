@@ -26,7 +26,7 @@ export class EditarContatoComponent implements OnInit {
       private router: Router,
     )
     {
-      titulo.setTitle("Cadastrar Contato - eAgenda");
+      titulo.setTitle("Editar Contato - eAgenda");
       this.contatoFormVM = new FormsContatoViewModel();
     }
 
