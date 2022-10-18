@@ -48,13 +48,14 @@ export class InserirCompromissoComponent implements OnInit {
       assunto: ['', [Validators.required, Validators.minLength(3)]],
       local: ['', [Validators.required]],
       tipoLocal: ['', [Validators.required]],
+      link: [''],
       data: ['', [Validators.required]],
       horaInicio: ['', [Validators.required]],
       //horaTermino: [''],
       contatoId:[''],
     });
 
-    this.obterNomesContatos();
+   // this.obterNomesContatos();
   }
 
   get assunto() {

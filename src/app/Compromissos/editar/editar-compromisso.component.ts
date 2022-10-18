@@ -13,8 +13,6 @@ import { TipoLocalizacaoCompromissoEnum } from '../view-models/tipo-localizacao-
 @Component({
   selector: 'app-editar-compromisso',
   templateUrl: './editar-compromisso.component.html',
-  styles: [
-  ]
 })
 export class EditarCompromissoComponent implements OnInit {
 
@@ -50,22 +48,23 @@ export class EditarCompromissoComponent implements OnInit {
       assunto: ['', [Validators.required, Validators.minLength(3)]],
       local: ['', [Validators.required]],
       tipoLocal: ['', [Validators.required]],
-      link:[''],
+      link: [''],
       data: ['', [Validators.required]],
       horaInicio: ['', [Validators.required]],
       horaTermino: [''],
-      contatoId:[''],
+      contatoId: [''],
     });
 
     this.formCompromisso.patchValue({
-      assunto: ['', [Validators.required, Validators.minLength(3)]],
-      local: ['', [Validators.required]],
-      tipoLocal: ['', [Validators.required]],
-      link:[''],
-      data: ['', [Validators.required]],
-      horaInicio: ['', [Validators.required]],
-      horaTermino: [''],
-      contatoId:[''],
+      id: this.compromissoFormVM.id,
+      assunto: this.compromissoFormVM.assunto,
+      local: this.compromissoFormVM.local,
+      tipoLocal: this.compromissoFormVM.tipoLocal,
+      link: this.compromissoFormVM.link,
+      data: this.compromissoFormVM.data.toString().split('T')[0],
+      horaInicio: this.compromissoFormVM.horaInicio,
+      horaTermino: this.compromissoFormVM.horaTermino,
+      contatoId: this.compromissoFormVM.contatoId,
     });
 
     this.obterNomesContatos();
