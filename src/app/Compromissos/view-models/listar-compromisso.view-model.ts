@@ -10,6 +10,6 @@ export class ListarCompromissoViewModel {
   data:	string;
   horaInicio:	string;
   horaTermino:	string;
-  contatoId:	string;
+	nomeContato: string;
 
 }

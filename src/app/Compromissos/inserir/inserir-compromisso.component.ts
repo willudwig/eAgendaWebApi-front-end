@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { find, Observable } from 'rxjs';
 import { ContatoService } from 'src/app/contatos/services/contato.service';
+import { FormsContatoViewModel } from 'src/app/contatos/view-models/forms-contato.view-model';
 import { ListarContatoViewModel } from 'src/app/contatos/view-models/listar-contato.view-model';
 import { CompromissoService } from '../services/compromisso.service';
 import { FormsCompromissoViewModel } from '../view-models/forms-compromisso.view-model';
@@ -19,6 +20,7 @@ import { TipoLocalizacaoCompromissoEnum } from '../view-models/tipo-localizacao-
 export class InserirCompromissoComponent implements OnInit {
 
   public formCompromisso: FormGroup;
+  public formGroupContato: FormGroup;
   public compromissoFormVM: FormsCompromissoViewModel;
 
   public tiposLocal = Object.values(TipoLocalizacaoCompromissoEnum)
@@ -27,8 +29,6 @@ export class InserirCompromissoComponent implements OnInit {
   public contato_nome: ListarContatoViewModel = new ListarContatoViewModel();
   public contatoNomes: ListarContatoViewModel[];
   public contatos: Observable<ListarContatoViewModel[]>;
-  public contato: string;
-
   constructor(
       titulo: Title,
       private formBuilder: FormBuilder,
@@ -51,7 +51,7 @@ export class InserirCompromissoComponent implements OnInit {
       data: ['', [Validators.required]],
       horaInicio: ['', [Validators.required]],
       //horaTermino: [''],
-      contatoId:['']
+      contatoId:[''],
     });
 
     this.obterNomesContatos();
@@ -81,15 +81,19 @@ export class InserirCompromissoComponent implements OnInit {
     return this.formCompromisso.get('horaTermino');
   }
 
+  get contatoId() {
+    return this.formCompromisso.get('contatoId');
+  }
+
+  get contato() {
+    return this.formGroupContato.get('contato');
+  }
+
   public gravar(): void {
 
     if (this.formCompromisso.invalid) return;
 
     this.compromissoFormVM = Object.assign({}, this.compromissoFormVM, this.formCompromisso.value);
-
-    this.compromissoFormVM.contatoId = this.obterIdContato(this.contato_nome.nome);
-
-    document.getElementById('') as HTMLOptionElement
 
     this.compromissoService.inserir(this.compromissoFormVM)
     .subscribe({
@@ -117,18 +121,5 @@ export class InserirCompromissoComponent implements OnInit {
       this.contatoNomes = x;
     });
   };
-
-  private obterIdContato(nomeContato: string): string {
-    const contatos = this.contatoService.selecionarTodos();
-    contatos.forEach((x) => {
-       x.forEach((y) => {
-          if(y.nome === nomeContato)
-            return y.id;
-          else return "null";
-      })
-    })
-
-    return "null";
-  }
 
 }

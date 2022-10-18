@@ -44,14 +44,14 @@
               <td>{{ t.data }}</td>
               <td>{{ t.horaInicio }}</td>
               <td>{{ t.horaTermino }}</td>
-              <td>{{ contatoNome }}</td>
+              <td>{{ t.nomeContato }}</td>
 
               <td class="d-grid d-md-block">
                 <button [routerLink]="['/compromissos/editar', t.id]"
                   type="button" class="btn btn-sm btn-primary me-0 me-md-1 mb-1 mb-md-auto">
                   <i class="bi bi-pencil"></i>
                 </button>
-                <button [routerLink]="['/Compromissos/excluir', t.id]"
+                <button [routerLink]="['/compromissos/excluir', t.id]"
                   type="button" class="btn btn-sm btn-outline-danger me-0 me-md-1 mb-1 mb-md-auto">
                   <i class="bi bi-trash"></i>
                 </button>

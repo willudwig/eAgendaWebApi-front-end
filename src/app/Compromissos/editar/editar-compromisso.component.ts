@@ -19,49 +19,38 @@ import { TipoLocalizacaoCompromissoEnum } from '../view-models/tipo-localizacao-
 export class EditarCompromissoComponent implements OnInit {
 
   public formCompromisso: FormGroup;
+  public formGroupContato: FormGroup;
   public compromissoFormVM: FormsCompromissoViewModel;
 
   public tiposLocal = Object.values(TipoLocalizacaoCompromissoEnum)
-        .filter((x) => !Number.isFinite(x));
+  .filter(v => !Number.isFinite(v));
 
   public contato_nome: ListarContatoViewModel = new ListarContatoViewModel();
   public contatoNomes: ListarContatoViewModel[];
   public contatos: Observable<ListarContatoViewModel[]>;
-
   constructor(
       titulo: Title,
       private formBuilder: FormBuilder,
       private compromissoService: CompromissoService,
       private toastr: ToastrService,
-      private route: ActivatedRoute,
       private router: Router,
       private contatoService: ContatoService
     )
     {
-      titulo.setTitle("Cadastrar compromisso - eAgenda");
+      titulo.setTitle("Cadastrar Compromisso - eAgenda");
+
       this.compromissoFormVM = new FormsCompromissoViewModel();
     }
 
   ngOnInit(): void {
-    this.compromissoFormVM = this.route.snapshot.data['compromisso'];
-
     this.formCompromisso = this.formBuilder.group({
-      assunto: [null, [Validators.required, Validators.minLength(3)]],
-      local: [null, [Validators.required]],
-      data: [null, [Validators.required]],
-      horaInicio: [null, [Validators.required]],
-      horaTermino: [null, [Validators.required]],
-      tipoLocal:[null]
-    });
-
-    this.formCompromisso.patchValue({
-      id: this.compromissoFormVM.id,
-      assunto: this.compromissoFormVM.assunto,
-      local: this.compromissoFormVM.local,
-      data: this.compromissoFormVM.data,
-      horaInicio: this.compromissoFormVM.horaInicio,
-      horaTermino: this.compromissoFormVM.horaTermino,
-      tipoLocal: this.compromissoFormVM.tipoLocal,
+      assunto: ['', [Validators.required, Validators.minLength(3)]],
+      local: ['', [Validators.required]],
+      tipoLocal: ['', [Validators.required]],
+      data: ['', [Validators.required]],
+      horaInicio: ['', [Validators.required]],
+      horaTermino: [''],
+      contatoId:[''],
     });
 
     this.obterNomesContatos();
@@ -72,6 +61,10 @@ export class EditarCompromissoComponent implements OnInit {
   }
 
   get local() {
+    return this.formCompromisso.get('local');
+  }
+
+  get tipoLocal() {
     return this.formCompromisso.get('local');
   }
 
@@ -87,8 +80,12 @@ export class EditarCompromissoComponent implements OnInit {
     return this.formCompromisso.get('horaTermino');
   }
 
-  get tipoLocal() {
-    return this.formCompromisso.get('tipoLocal');
+  get contatoId() {
+    return this.formCompromisso.get('contatoId');
+  }
+
+  get contato() {
+    return this.formGroupContato.get('contato');
   }
 
   public gravar(): void {
@@ -98,10 +95,10 @@ export class EditarCompromissoComponent implements OnInit {
     this.compromissoFormVM = Object.assign({}, this.compromissoFormVM, this.formCompromisso.value);
 
     this.compromissoService.editar(this.compromissoFormVM)
-      .subscribe({
-        next: (compromissoEditado) => this.processarSucesso(compromissoEditado),
-        error: (erro) => this.processarFalha(erro)
-      });
+    .subscribe({
+      next: (CompromissoInserido) => this.processarSucesso(CompromissoInserido),
+      error: (erro) => this.processarFalha(erro)
+    });
 
   }
 

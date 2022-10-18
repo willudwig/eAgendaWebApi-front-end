@@ -37,7 +37,7 @@
           placeholder="Digite o local do compromisso"
         />
         <div class="invalid-tooltip" *ngIf="local?.touched && local?.invalid">
-          <span *ngIf="assunto?.errors?.['required']">O local precisa ser preenchido.</span>
+          <span *ngIf="local?.errors?.['required']">O local precisa ser preenchido.</span>
         </div>
       </div>
 
@@ -83,10 +83,10 @@
 
       <div class="form-group mb-3 position-relative">
         <label class="form-label">Contato:</label>
-        <ng-select
-          formControlName="contatoNome" [clearable]="false" [searchable]="false">
-          <ng-option *ngFor="let contato_nome of contatoNomes ; index as i" [value]="i">
-              {{ contato_nome.nome }}
+        <ng-select id="ngSelect"
+           formControlName="contatoId" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let contato_nome of contatoNomes ; index as i" [value]="contato_nome.id">
+              {{ contato_nome.nome }} | {{contato_nome.id}}
           </ng-option>
         </ng-select>
       </div>
