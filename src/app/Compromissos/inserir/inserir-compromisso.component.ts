@@ -3,9 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { find, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ContatoService } from 'src/app/contatos/services/contato.service';
-import { FormsContatoViewModel } from 'src/app/contatos/view-models/forms-contato.view-model';
 import { ListarContatoViewModel } from 'src/app/contatos/view-models/listar-contato.view-model';
 import { CompromissoService } from '../services/compromisso.service';
 import { FormsCompromissoViewModel } from '../view-models/forms-compromisso.view-model';
@@ -48,14 +47,14 @@ export class InserirCompromissoComponent implements OnInit {
       assunto: ['', [Validators.required, Validators.minLength(3)]],
       local: ['', [Validators.required]],
       tipoLocal: ['', [Validators.required]],
-      link: [''],
+      link: ['www.nulo.com'],
       data: ['', [Validators.required]],
       horaInicio: ['', [Validators.required]],
       //horaTermino: [''],
       contatoId:[''],
     });
 
-   // this.obterNomesContatos();
+    this.obterNomesContatos();
   }
 
   get assunto() {

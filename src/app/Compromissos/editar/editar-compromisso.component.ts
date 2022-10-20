@@ -43,12 +43,12 @@ export class EditarCompromissoComponent implements OnInit {
 
   ngOnInit(): void {
     this.compromissoFormVM = this.route.snapshot.data['compromisso'];
-
+    console.log(this.compromissoFormVM);
     this.formCompromisso = this.formBuilder.group({
       assunto: ['', [Validators.required, Validators.minLength(3)]],
       local: ['', [Validators.required]],
       tipoLocal: ['', [Validators.required]],
-      link: [''],
+      link: ['www.nulo.com'],
       data: ['', [Validators.required]],
       horaInicio: ['', [Validators.required]],
       horaTermino: [''],
@@ -79,7 +79,7 @@ export class EditarCompromissoComponent implements OnInit {
   }
 
   get tipoLocal() {
-    return this.formCompromisso.get('local');
+    return this.formCompromisso.get('tipoLocal');
   }
 
   get data() {
