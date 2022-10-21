@@ -49,6 +49,13 @@ const routes: Routes = [
 
     //canActivate: [AuthGuard] criado dentro do compromisso-routing.module
   },
+  {
+    path: 'despesas',
+    loadChildren: () => import('./despesas/depesa.module')
+    .then(m => m.DepesaModule),
+
+    //canActivate: [AuthGuard] criado dentro do compromisso-routing.module
+  },
 ];
 
 @NgModule({

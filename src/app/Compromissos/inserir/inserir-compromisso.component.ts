@@ -66,7 +66,7 @@ export class InserirCompromissoComponent implements OnInit {
   }
 
   get tipoLocal() {
-    return this.formCompromisso.get('local');
+    return this.formCompromisso.get('tipoLocal');
   }
 
   get data() {
@@ -83,10 +83,6 @@ export class InserirCompromissoComponent implements OnInit {
 
   get contatoId() {
     return this.formCompromisso.get('contatoId');
-  }
-
-  get contato() {
-    return this.formGroupContato.get('contato');
   }
 
   public gravar(): void {
