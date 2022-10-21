@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DespesaService } from '../services/despesa.service';
+import { CategoriaSelecionadaViewModel } from '../view-models/categoria-selecionada.viewmodel';
 import { FormaPgtoDespesaEnum } from '../view-models/formapgtodespesaenum';
 import { FormsDespesaViewModel } from '../view-models/forms-despesa.view-model';
 
@@ -16,6 +17,7 @@ import { FormsDespesaViewModel } from '../view-models/forms-despesa.view-model';
 export class InserirDespesaComponent implements OnInit {
 
   public formDespesa: FormGroup;
+  public formCategorias: FormGroup;
   public despesaFormVM: FormsDespesaViewModel;
 
   public formasPagamento = Object.values(FormaPgtoDespesaEnum)
@@ -48,6 +50,10 @@ export class InserirDespesaComponent implements OnInit {
       categoriasSelecionadas: ['']
     })
 
+    this.formCategorias = this.formBuilder.group({
+      titulo: ['']
+    });
+
   }
 
   get id() {
@@ -68,6 +74,10 @@ export class InserirDespesaComponent implements OnInit {
 
   get formaPagamento() {
     return this.formDespesa.get('formaPagamento');
+  }
+
+  get titulo() {
+    return this.formCategorias.get('titulo');
   }
 
   public gravar(): void {
@@ -93,6 +103,20 @@ export class InserirDespesaComponent implements OnInit {
       this.toastr.error('Operação mal sucedida!', 'Fracasso');
       console.error(erro);
     }
+  }
+
+  public adicionarCategoria() {
+
+    if (this.titulo) {
+
+      let categoria = new CategoriaSelecionadaViewModel();
+      categoria.titulo = this.titulo.value;
+
+      if (Array.isArray(this.despesaFormVM.categoriasSelecionadas))
+          this.despesaFormVM.categoriasSelecionadas.push(categoria);
+
+      this.formCategorias.reset();
+   }
   }
 }
 
