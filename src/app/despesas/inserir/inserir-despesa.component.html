@@ -1,1 +1,85 @@
-<p>inserir-despesa works!</p>
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">
+            Inserir Nova Despesa
+          </h1>
+        <hr />
+      </div>
+
+      <form [formGroup]="formDespesa" class="mt-4">
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Descrição:</label>
+          <input
+            [ngClass]="descricao?.touched && descricao?.invalid ? 'is-invalid' : ''"
+            formControlName="descricao"
+            class="form-control"
+            type="text"
+            placeholder="Digite o descrição da despesa"
+          />
+          <div class="invalid-tooltip" *ngIf="descricao?.touched && descricao?.invalid">
+            <span *ngIf="descricao?.errors?.['required']">A descrição precisa ser preenchida.</span>
+            <span *ngIf="descricao?.errors?.['minlength']">A descrição deve ter no mínimo 3 caracteres.</span>
+          </div>
+        </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label">Valor:</label>
+        <input
+          [ngClass]="valor?.touched && valor?.invalid ? 'is-invalid' : ''"
+          formControlName="valor"
+          class="form-control"
+          type="number"
+          placeholder="Digite o valor da despesa"
+        />
+        <div class="invalid-tooltip" *ngIf="valor?.touched && valor?.invalid">
+          <span *ngIf="valor?.errors?.['required']">O valor é obrigatório.</span>
+        </div>
+      </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label">Data:</label>
+        <input
+          [ngClass]="data?.touched && data?.invalid ? 'is-invalid' : ''"
+          formControlName="data"
+          class="form-control"
+          type="date"
+          placeholder="Digite o valor da despesa"
+        />
+        <div class="invalid-tooltip" *ngIf="data?.touched && data?.invalid">
+          <span *ngIf="data?.errors?.['required']">A data é obrigatória.</span>
+        </div>
+      </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label">Forma de Pagamento:</label>
+        <ng-select id="ngSelect"
+           formControlName="formaPagamento" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let formaPag of formasPagamento ; index as i" [value]="formaPag">
+              {{ formaPag }}
+          </ng-option>
+        </ng-select>
+      </div>
+
+        <div class="card-footer g-grid d-flex gap-1 mt-5">
+          <button (click)="gravar()"
+            type="button" class="btn btn-primary px-5">
+            <i class="pi pi-save me-2"></i>
+            Gravar
+          </button>
+          <button routerLink="/despesas/listar"
+            type="button" class="btn btn-outline-primary px-5">
+            <i class="pi pi-arrow-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

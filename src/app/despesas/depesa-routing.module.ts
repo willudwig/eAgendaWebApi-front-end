@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/services/auth.guard';
 import { DespesaComponent } from './despesa.component';
+import { InserirDespesaComponent } from './inserir/inserir-despesa.component';
 import { ListarDespesasComponent } from './listar/listar-despesas.component';
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'listar',
         component: ListarDespesasComponent
+      },
+      {
+        path: 'inserir',
+        component: InserirDespesaComponent
       },
     ]
   }

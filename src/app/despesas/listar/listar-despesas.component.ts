@@ -16,7 +16,7 @@ export class ListarDespesasComponent implements OnInit {
   constructor(private serviceDespesa: DespesaService) { }
 
   ngOnInit(): void {
-
+    this.despesas$ = this.serviceDespesa.selecionarTodos();
   }
 
 }

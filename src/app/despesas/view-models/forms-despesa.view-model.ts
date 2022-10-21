@@ -7,7 +7,7 @@ export class FormsDespesaViewModel {
   descricao:	string;
   valor: number;
   data:	string;
-  formaPagamento:	FormaPgtoDespesaEnum;
+  formaPagamento:	string;
 
   categoriasSelecionadas: CategoriaSelecionadaViewModel[];
 
